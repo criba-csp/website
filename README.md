@@ -1,6 +1,6 @@
 # 🤖 Crispa — the website
 
-The public website for **Crispa**, Tito's self-hosted CSP-violation
+The public website for **Crispa**, a self-hosted CSP-violation
 reporting endpoint and analytics tool — a
 [report-uri.com](https://report-uri.com) alternative we run ourselves.
 The name crosses *criba* — Spanish for a sieve — with *CSP*: a sieve for

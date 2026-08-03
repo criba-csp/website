@@ -199,7 +199,7 @@
 <main>
 
 <section id="intro">
-  <p>Content-Security-Policy is the browser feature that stops injected scripts, rogue frames and exfiltration by refusing to load anything the page didn't declare. It comes with a built-in feedback channel: the browser will POST a report every time it blocks something. Almost nobody listens to that channel, because the hosted services that do are metered per report and the raw stream is a firehose of noise. Crispa is the listener you run yourself — a <a href="https://report-uri.com">report-uri.com</a> alternative built for <a href="https://tito.io">Tito</a>'s own apps, as one small self-hosted binary. The name crosses <em>criba</em> — Spanish for a sieve — with <em>CSP</em>: a sieve for the report stream, keeping the grain and shedding the noise.</p>
+  <p>Content-Security-Policy is the browser feature that stops injected scripts, rogue frames and exfiltration by refusing to load anything the page didn't declare. It comes with a built-in feedback channel: the browser will POST a report every time it blocks something. Almost nobody listens to that channel, because the hosted services that do are metered per report and the raw stream is a firehose of noise. Crispa is the listener you run yourself — a <a href="https://report-uri.com">report-uri.com</a> alternative shipped as one small self-hosted binary. The name crosses <em>criba</em> — Spanish for a sieve — with <em>CSP</em>: a sieve for the report stream, keeping the grain and shedding the noise.</p>
 
   <div class="keyline">
     <p>The premise in one line: <strong>a CSP report stream is a dedup problem, not a logging problem.</strong> A policy misfiring a thousand times a minute is one fact with a big counter, not a thousand rows. Store the fact once, count it, and watch the counters for the handful of changes that mean something.</p>
@@ -260,7 +260,7 @@ Content-Security-Policy-Report-Only:
   <h2><a href="#status">Status</a></h2>
   <p class="epigraph">Fewer claims, all of them checkable.</p>
 
-  <p><strong>v1, in progress.</strong> The ingest endpoint and the analytics dashboard run today; deployment to production is the current work. Crispa exists to watch Tito's own apps first — it becomes interesting to anyone else only after it has earned its keep there. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
+  <p><strong>v1, in progress.</strong> The ingest endpoint and the analytics dashboard run today; deployment to production is the current work. Crispa exists to watch its makers' own apps first — it becomes interesting to anyone else only after it has earned its keep there. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
 </section>
 
 <section id="family">
@@ -274,7 +274,7 @@ Content-Security-Policy-Report-Only:
 
 <footer>
   <p>🤖 Written by an LLM (Claude), on the ideas, instruction, and editing of humans. AI-written text here is always marked and always disclosed — see <a href="https://11factor.org/#x">factor X</a>.</p>
-  <p>Crispa is built by <a href="https://tito.io">Tito</a> on <a href="https://carlosframework.com">CARLOS</a>, and keeps the promises set out in <a href="https://11factor.org">The Eleven Factors</a> — with its one deviation stated in the open, above.</p>
+  <p>Crispa is built on <a href="https://carlosframework.com">CARLOS</a>, and keeps the promises set out in <a href="https://11factor.org">The Eleven Factors</a> — with its one deviation stated in the open, above.</p>
   <p><a href="https://github.com/criba-csp/website">Source for this site on GitHub</a> — open, of course.</p>
 </footer>
 

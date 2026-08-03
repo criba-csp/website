@@ -4,7 +4,7 @@ Working notes for anyone (human or agent) changing this repo.
 
 ## What this is
 
-The website for **Crispa** — Tito's self-hosted CSP-violation reporting
+The website for **Crispa** — a self-hosted CSP-violation reporting
 endpoint and analytics tool, a [report-uri.com](https://report-uri.com)
 alternative run in-house. The site is a single static `index.html`: no
 build step, no dependencies, no JavaScript. Keep it that way; a product
@@ -65,6 +65,9 @@ a person marker.**
 - **Don't overclaim maturity.** v1 is in progress: ingest and dashboard
   run, deployment is the current work. Update the Status section when
   reality changes, not before.
+- **Never reference Tito on the site or in this repo's prose** — no name,
+  no link (decided 2026-08-03). Crispa stands on its own; "its makers"
+  is as specific as the copy gets.
 - **The name is Crispa, titleized** (changed 2026-08-03 from the earlier
   all-lowercase styling — don't revert it in a drive-by edit). Its
   etymology is **criba** (Spanish: sieve) crossed with **CSP** — hence the
