@@ -1,11 +1,13 @@
-# 🤖 crispa — the website
+# 🤖 Crispa — the website
 
-The public website for **crispa**, Tito's self-hosted CSP-violation
+The public website for **Crispa**, Tito's self-hosted CSP-violation
 reporting endpoint and analytics tool — a
 [report-uri.com](https://report-uri.com) alternative we run ourselves.
+The name crosses *criba* — Spanish for a sieve — with *CSP*: a sieve for
+the report stream.
 
 The whole site is one static page: [`index.html`](index.html). No build
-step, no dependencies, no JavaScript. crispa is a
+step, no dependencies, no JavaScript. Crispa is a
 [CARLOS](https://carlosframework.com) application, and the family's rules
 apply to its website.
 
@@ -21,10 +23,10 @@ human-certification markers that AI must not touch) is in
 ## Provenance
 
 Written by an LLM (Claude), on the ideas, instruction, and editing of
-humans. The claims on the page are traceable to the crispa repo's
+humans. The claims on the page are traceable to the Crispa repo's
 `README.md`, `CLAUDE.md` and `DESIGN.md`.
 
 ## Licence
 
-To be decided alongside crispa's own — open source is the family default;
+To be decided alongside Crispa's own — open source is the family default;
 not optional, only deferred.

@@ -4,7 +4,7 @@ Working notes for anyone (human or agent) changing this repo.
 
 ## What this is
 
-The website for **crispa** — Tito's self-hosted CSP-violation reporting
+The website for **Crispa** — Tito's self-hosted CSP-violation reporting
 endpoint and analytics tool, a [report-uri.com](https://report-uri.com)
 alternative run in-house. The site is a single static `index.html`: no
 build step, no dependencies, no JavaScript. Keep it that way; a product
@@ -45,36 +45,40 @@ a person marker.**
 - **House style is inherited from [11factor](https://11factor.org)** via
   the [CARLOS site](https://carlosframework.com): Charter/Georgia serif, a
   single accent colour, `--max: 42rem` measure, sections separated by
-  hairline rules, an italic epigraph under each `h2`. crispa's accent is
+  hairline rules, an italic epigraph under each `h2`. Crispa's accent is
   **amber** (`#a1580a` light, `#e3a457` dark) — a warning colour for a
   warnings tool — so the family sites are visibly siblings and not the
   same site.
 
 ## Accuracy rules (these matter more than the prose)
 
-- **The crispa source repo is not yet published.** Never link to it from
+- **The Crispa source repo is not yet published.** Never link to it from
   the site; the link would 404 for every visitor. The page says the source
   is unpublished and the licence pending — update both when publication
   actually lands.
-- **The server-trust deviation must stay stated in the open.** crispa's
+- **The server-trust deviation must stay stated in the open.** Crispa's
   operators can read every violation it stores — a deliberate departure
-  from the CARLOS default of server-blindness, justified in crispa's
+  from the CARLOS default of server-blindness, justified in Crispa's
   `CLAUDE.md` ("The one rule"). The site must never claim or imply
   end-to-end encryption, and must never quietly drop the trade-off
   section.
 - **Don't overclaim maturity.** v1 is in progress: ingest and dashboard
   run, deployment is the current work. Update the Status section when
   reality changes, not before.
-- **The name is crispa, lowercase**, styled that way even at the start of
-  a sentence.
-- Every technical claim on the page is traceable to the crispa repo's
+- **The name is Crispa, titleized** (changed 2026-08-03 from the earlier
+  all-lowercase styling — don't revert it in a drive-by edit). Its
+  etymology is **criba** (Spanish: sieve) crossed with **CSP** — hence the
+  GitHub org `criba-csp` — and the site states it in the intro; keep the
+  reference when reworking that copy.
+- Every technical claim on the page is traceable to the Crispa repo's
   `README.md`, `CLAUDE.md`, and `DESIGN.md` (sibling checkout at
   `../crispa`). If you change a claim, check it against those — and
   ultimately the code — rather than against the previous copy.
 
 ## Deploying
 
-Not yet wired up. The likely path is the same as the CARLOS site's: ship
-as a `-kind static` app on `carlosframework/platform`
-(`carlos ship` / `promote` / `add`). `.nojekyll` is in place in case
-GitHub Pages is used as an interim or fallback host.
+**GitHub Pages, for now** — enabled 2026-08-03, serving `main` (root);
+pushing to `main` publishes, and `.nojekyll` is in place. The likely
+eventual path is the same as the CARLOS site's: ship as a `-kind static`
+app on `carlosframework/platform` (`carlos ship` / `promote` / `add`),
+with Pages kept as the fallback.
