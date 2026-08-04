@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cribado — self-hosted report sieves</title>
-<meta name="description" content="🤖 Cribado is a family of self-hosted report sieves: small tools that store, deduplicate and watch the reports your systems send back. cribado-csp, the CSP-violation sieve you run yourself, is first; cribado-dmarc is planned.">
+<meta name="description" content="🤖 Cribado is a family of self-hosted report sieves: small tools that store, deduplicate and watch the reports your systems send back. cribado-csp sieves CSP-violation reports; cribado-dmarc, on its way, sieves DMARC aggregate reports.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Cribado">
-<meta property="og:description" content="Self-hosted report sieves. cribado-csp stores, deduplicates and watches CSP-violation reports — catch a broken or over-tightened policy before your users do. cribado-dmarc is planned.">
+<meta property="og:description" content="Self-hosted report sieves. cribado-csp stores, deduplicates and watches CSP-violation reports; cribado-dmarc does the same for DMARC aggregates.">
 <meta property="og:type" content="website">
 <style>
   :root {
@@ -61,20 +61,19 @@
     font-size: 0.88em; background: var(--accent-soft);
     padding: 0.1em 0.35em; border-radius: 0.25rem;
   }
-  pre {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.85rem; line-height: 1.55;
-    background: var(--accent-soft);
-    border: 1px solid var(--rule); border-radius: 0.5rem;
-    padding: 1rem 1.1rem; margin: 1.1rem auto;
-    overflow-x: auto;
-  }
-  pre code { background: none; padding: 0; font-size: 1em; }
 
-  /* hero */
+  /* nav + hero */
+  .crumbs {
+    max-width: var(--wide); margin: 0 auto; padding: 1.25rem 0 0;
+    text-align: center;
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem; color: var(--muted);
+  }
+  .crumbs a { color: var(--muted); text-decoration: none; }
+  .crumbs a:hover, .crumbs a.here { color: var(--accent); }
   header {
     max-width: var(--wide); margin: 0 auto;
-    padding: 5rem 0 3rem; text-align: center;
+    padding: 3.75rem 0 3rem; text-align: center;
   }
   h1 {
     font-size: 3.4rem; line-height: 1; letter-spacing: 0.02em;
@@ -105,22 +104,8 @@
   }
   .robot-note a { color: var(--accent); }
 
-  /* stat strip */
-  .stats {
-    max-width: var(--wide); margin: 0 auto;
-    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-    text-align: center;
-  }
-  .stats div { padding: 1.4rem 0.5rem; }
-  .stats .n { display: block; font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
-  .stats .l {
-    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-    font-size: 0.85rem; color: var(--muted);
-  }
-
   /* sections */
-  main { max-width: var(--wide); margin: 0 auto; padding: 0 0 3rem; }
+  main { max-width: var(--wide); margin: 0 auto; padding: 0 0 3rem; border-top: 1px solid var(--rule); }
   section { padding: 3rem 0; }
   section + section { border-top: 1px solid var(--rule); }
   section > * { max-width: var(--max); margin-left: auto; margin-right: auto; }
@@ -149,7 +134,13 @@
   }
   .card.feature { border-color: var(--accent); background: var(--accent-soft); }
   .card h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 0.35rem; }
-  .card p { color: var(--muted); font-size: 0.97rem; margin: 0; }
+  .card h3 a { color: inherit; }
+  .card p { color: var(--muted); font-size: 0.97rem; margin: 0 0 0.6rem; }
+  .card p:last-child { margin-bottom: 0; }
+  .card .go {
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+  }
 
   .keyline {
     margin: 1.5rem auto; padding: 1rem 1.1rem;
@@ -178,82 +169,27 @@
 </head>
 <body>
 
+<nav class="crumbs"><a class="here" href="./">Cribado</a> · <a href="csp/">cribado-csp</a> · <a href="dmarc/">cribado-dmarc</a></nav>
+
 <header>
   <h1>Cribado</h1>
   <p class="tagline">Self-hosted sieves for the reports your systems send back.</p>
-  <p class="lede">A browser that blocks something reports it; a mail server that rejects something reports it. Cribado is a family of small self-hosted tools that sieve those report streams — store, deduplicate, surface what actually changed. The first app, <code>cribado-csp</code>, catches a broken or over-tightened Content-Security-Policy before your users do.</p>
+  <p class="lede">A browser that blocks something reports it; a mail server that rejects something reports it. Cribado is a family of small self-hosted tools that sieve those report streams — store, deduplicate, surface what actually changed. <a href="csp/"><code>cribado-csp</code></a> watches Content-Security-Policy violations; <a href="dmarc/"><code>cribado-dmarc</code></a>, on its way, watches DMARC aggregate reports.</p>
   <div class="cta">
-    <a class="btn primary" href="#how">How it works</a>
-    <a class="btn ghost" href="#trust">The trade-off</a>
+    <a class="btn primary" href="csp/">cribado-csp</a>
+    <a class="btn ghost" href="dmarc/">cribado-dmarc</a>
   </div>
   <p class="robot-note">🤖 This page was written by an LLM, on the ideas, instruction, and editing of humans. AI-written text here is always marked, visibly, like this — that's <a href="https://11factor.org/#x">factor X</a>.</p>
 </header>
 
-<div class="stats">
-  <div><span class="n">1</span><span class="l">endpoint to point a policy at</span></div>
-  <div><span class="n">2</span><span class="l">report formats, both accepted</span></div>
-  <div><span class="n">1</span><span class="l">row per distinct violation, however often it fires</span></div>
-  <div><span class="n">0</span><span class="l">AI required for the insights</span></div>
-</div>
-
 <main>
 
 <section id="intro">
-  <p>Content-Security-Policy is the browser feature that stops injected scripts, rogue frames and exfiltration by refusing to load anything the page didn't declare. It comes with a built-in feedback channel: the browser will POST a report every time it blocks something. Almost nobody listens to that channel, because the hosted services that do are metered per report and the raw stream is a firehose of noise. <code>cribado-csp</code> is the listener you run yourself, shipped as one small self-hosted binary. The family name is <em>cribado</em> — Spanish for sieving, the work of a <em>criba</em> — because that is the whole idea: a sieve for the report stream, keeping the grain and shedding the noise.</p>
+  <p>Modern infrastructure reports on itself, and almost nobody listens. Browsers will POST a report every time a Content-Security-Policy blocks something; mail receivers mail you XML about every message claiming to come from your domain. The hosted services that listen are metered per report, and the raw streams are firehoses of noise — so the feedback channels stay dark. Cribado is the listener you run yourself. The family name is <em>cribado</em> — Spanish for sieving, the work of a <em>criba</em> — because that is the whole idea: a sieve for the report stream, keeping the grain and shedding the noise.</p>
 
   <div class="keyline">
-    <p>The premise in one line: <strong>a CSP report stream is a dedup problem, not a logging problem.</strong> A policy misfiring a thousand times a minute is one fact with a big counter, not a thousand rows. Store the fact once, count it, and watch the counters for the handful of changes that mean something.</p>
+    <p>The premise in one line: <strong>a report stream is a dedup problem, not a logging problem.</strong> A policy misfiring a thousand times a minute is one fact with a big counter, not a thousand rows. Store the fact once, count it, and watch the counters for the handful of changes that mean something.</p>
   </div>
-</section>
-
-<section id="how">
-  <h2><a href="#how">How it works</a></h2>
-  <p class="epigraph">One endpoint, both formats, and plain SQL where you'd expect magic.</p>
-
-  <div class="cards">
-    <div class="card">
-      <h3>One endpoint, both report formats</h3>
-      <p>Browsers speak two dialects: the legacy <code>report-uri</code> POST and the Reporting-API <code>report-to</code> batch. <code>cribado-csp</code> accepts both at the same URL, content-negotiated, so old and new browsers land in the same table.</p>
-    </div>
-    <div class="card">
-      <h3>Dedup-and-count, not a firehose</h3>
-      <p>Each distinct violation — same site, directive, blocked host, disposition — is one row with a counter. Volume becomes a number on a row instead of a runaway table, and the interesting signal is the counter's slope.</p>
-    </div>
-    <div class="card">
-      <h3>Deterministic insights</h3>
-      <p>The warnings — a never-before-seen blocked host, a directive suddenly firing far above its baseline, a real enforce-mode breakage — are plain SQL thresholds you can read and audit. An optional 🤖 summary layer is planned on top, opt-in; the tool works fully without it.</p>
-    </div>
-  </div>
-</section>
-
-<section id="point">
-  <h2><a href="#point">Pointing a page at it</a></h2>
-  <p class="epigraph">Two response headers, and the browser does the rest.</p>
-
-  <p>Each site gets an opaque ingest key. Add the reporting directive to the page's policy — legacy form, Reporting-API form, or both:</p>
-
-<pre><code>Content-Security-Policy-Report-Only:
-    default-src 'self'; report-uri https://&lt;host&gt;/r/&lt;key&gt;
-
-# or, via the Reporting API:
-Reporting-Endpoints: cribado-csp="https://&lt;host&gt;/r/&lt;key&gt;"
-Content-Security-Policy-Report-Only:
-    default-src 'self'; report-to cribado-csp</code></pre>
-
-  <p>Start in report-only mode to see what a policy <em>would</em> break, tighten it against real data, then enforce. Sites and keys are managed from the dashboard — create sites, mint and disable keys, copy ingest URLs — or from equivalent ops subcommands for the first key on a fresh box.</p>
-</section>
-
-<section id="trust">
-  <h2><a href="#trust">The trade-off, stated plainly</a></h2>
-  <p class="epigraph">Cribado's operators can read every report it stores. On purpose.</p>
-
-  <p>Cribado is built on <a href="https://carlosframework.com">CARLOS</a>, whose family rule is server-blindness: the server holds only ciphertext it cannot open. Cribado deviates, deliberately, because the product <em>is</em> analytics over the reports — you cannot cheaply compute "top blocked hosts" over data you cannot read. A CSP report is operational telemetry about your own apps, closer to a server log than to a private message. The family rule for deviations applies instead: <strong>enumerated, justified, published, never hidden.</strong> No end-to-end encryption is claimed, here or anywhere.</p>
-
-  <ul class="plain">
-    <li><strong>Storage is still minimised.</strong> URL query strings and fragments are stripped before storage — a <code>document-uri</code> can carry a user token — and inline-script samples are never shown in list or aggregate views. Browsers don't put cookies or auth headers in reports, so <code>cribado-csp</code> never sees them.</li>
-    <li><strong>The ingest endpoint is public and unauthenticated</strong>, by necessity: browsers can't sign a report POST. It is hostile by construction — rate-limited, size-capped, scoped by an opaque per-site key, with unknown keys rejected cheaply.</li>
-    <li><strong>The dashboard is gated.</strong> Sign-in is Keymail OAuth SSO, restricted to an operator allowlist; only operators can read violation data. A deployed build fails closed if SSO isn't configured, so an open dashboard cannot ship by accident.</li>
-  </ul>
 </section>
 
 <section id="apps">
@@ -262,28 +198,32 @@ Content-Security-Policy-Report-Only:
 
   <div class="cards">
     <div class="card feature">
-      <h3>cribado-csp</h3>
-      <p>The CSP-violation sieve — the app this page describes. v1, in progress: the ingest endpoint and the analytics dashboard run today; deployment is the current work.</p>
+      <h3><a href="csp/">cribado-csp</a></h3>
+      <p>The CSP-violation sieve. One endpoint accepts both browser report formats, deduplicates them into counted rows, and turns the counters into deterministic warnings — a new blocked host, a spiking directive, a real enforce-mode breakage. v1, in progress: ingest and dashboard run today.</p>
+      <p class="go"><a href="csp/">Read about cribado-csp →</a></p>
     </div>
     <div class="card">
-      <h3>cribado-dmarc</h3>
-      <p>The same treatment for DMARC aggregate reports — the XML your mail domain receives about who is sending as you. <strong>Not yet built.</strong> It is named here so the shape of the family is honest, not to imply it exists.</p>
+      <h3><a href="dmarc/">cribado-dmarc</a></h3>
+      <p>The DMARC aggregate-report sieve, on its way. Receivers mail zipped XML about who sends as your domain; cribado-dmarc unpacks, parses and deduplicates it into plain warnings — a new source sending as you, mail failing authentication, a policy safe to tighten. Runs locally today; not yet deployed.</p>
+      <p class="go"><a href="dmarc/">Read about cribado-dmarc →</a></p>
     </div>
   </div>
 </section>
 
-<section id="status">
-  <h2><a href="#status">Status</a></h2>
-  <p class="epigraph">Fewer claims, all of them checkable.</p>
+<section id="trust">
+  <h2><a href="#trust">The trade-off, stated plainly</a></h2>
+  <p class="epigraph">Cribado's operators can read every report it stores. On purpose.</p>
 
-  <p><strong>v1, in progress.</strong> <code>cribado-csp</code>'s ingest endpoint and analytics dashboard run today; deployment to production is the current work. Cribado exists to watch its makers' own apps first — it becomes interesting to anyone else only after it has earned its keep there. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
+  <p>Cribado is built on <a href="https://carlosframework.com">CARLOS</a>, whose family rule is server-blindness: the server holds only ciphertext it cannot open. Cribado deviates, deliberately, because the product <em>is</em> analytics over the reports — you cannot cheaply compute aggregates over data you cannot read. These reports are operational telemetry about your own systems, closer to a server log than to a private message. The family rule for deviations applies instead: <strong>enumerated, justified, published, never hidden.</strong> No end-to-end encryption is claimed, here or anywhere. Each app's page states its own version of the trade-off, alongside what it still refuses to store.</p>
 </section>
 
 <section id="family">
   <h2><a href="#family">Part of a family</a></h2>
   <p class="epigraph">One binary, one SQLite database, no build step.</p>
 
-  <p>Cribado apps are <a href="https://carlosframework.com">CARLOS</a> applications, built with the <a href="https://carlosframework.com/rastrillo/">Rastrillo</a> web framework: each a single static Go binary with the database compiled in, deployed as one instance, small enough for one person to read. This site follows the same rule — one static page, no build step, no dependencies, no JavaScript.</p>
+  <p>Cribado apps are <a href="https://carlosframework.com">CARLOS</a> applications, built with the <a href="https://carlosframework.com/rastrillo/">Rastrillo</a> web framework: each a single static Go binary with the database compiled in, deployed as one instance, small enough for one person to read. This site follows the same rule — static pages, no build step, no dependencies, no JavaScript.</p>
+
+  <p>The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, these pages will link to it.</p>
 </section>
 
 </main>

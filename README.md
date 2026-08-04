@@ -3,13 +3,14 @@
 The public website for **Cribado**, a family of self-hosted report
 sieves: small tools that store, deduplicate and watch the reports your
 systems send back. The name is *cribado* — Spanish for sieving, the work
-of a *criba*. First app: **cribado-csp**, a CSP-violation reporting
-endpoint and analytics tool we run ourselves; **cribado-dmarc** is
-planned, not yet built.
+of a *criba*. The apps: **cribado-csp**, a CSP-violation reporting
+endpoint and analytics tool we run ourselves, and **cribado-dmarc**,
+its DMARC aggregate-report sibling — on its way, not yet deployed.
 
-The whole site is one static page: [`index.html`](index.html). No build
-step, no dependencies, no JavaScript. Cribado apps are
-[CARLOS](https://carlosframework.com) applications, and the family's
+The site is three static pages: [`index.html`](index.html) for the
+family, [`csp/`](csp/index.html) and [`dmarc/`](dmarc/index.html) for
+the apps. No build step, no dependencies, no JavaScript. Cribado apps
+are [CARLOS](https://carlosframework.com) applications, and the family's
 rules apply to the website too.
 
 ## Authorship: the 🤖 rule

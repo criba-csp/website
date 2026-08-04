@@ -4,13 +4,16 @@ Working notes for anyone (human or agent) changing this repo.
 
 ## What this is
 
-The website for **Cribado** — a family of self-hosted report sieves.
-Today that means **cribado-csp**, a CSP-violation reporting endpoint and
-analytics tool run in-house; **cribado-dmarc** (DMARC aggregate reports)
-is planned and not yet built. The site is a single static `index.html`: no build step,
-no dependencies, no JavaScript. Keep it that way; a product whose family
-motto is "lightweight, no build step" does not get to ship a bundler on
-its own homepage.
+The website for **Cribado** — a family of self-hosted report sieves:
+**cribado-csp** (CSP-violation reports; v1 in progress) and
+**cribado-dmarc** (DMARC aggregate reports; on its way — runs locally,
+not yet deployed). The site is three static pages — `index.html` (the
+family), `csp/index.html`, `dmarc/index.html` — each self-contained with
+its own inline `<style>`: no build step, no dependencies, no JavaScript,
+no shared CSS file. Keep it that way; a product whose family motto is
+"lightweight, no build step" does not get to ship a bundler on its own
+homepage. A style change means editing all three `<style>` blocks — the
+duplication is the price of self-contained pages, paid knowingly.
 
 ## The one rule: AI authorship is always marked (🤖 / 👨)
 
@@ -53,14 +56,17 @@ a person marker.**
 
 ## Accuracy rules (these matter more than the prose)
 
-- **The cribado-csp source repo is private** (`cribado/cribado-csp` on
-  GitHub). Never link to it from the site; the link would 404 for every
-  visitor. The page says the source is unpublished and the licence
-  pending — update both when publication actually lands.
-- **cribado-dmarc does not exist yet** (as of 2026-08-04). The site names
-  it to show the family's shape, and says "not yet built" in the same
-  breath. Never add claims about it beyond intent until there is code to
-  trace them to.
+- **Both app repos are private** (`cribado/cribado-csp` and
+  `cribado/cribado-dmarc` on GitHub). Never link to them from the site;
+  the links would 404 for every visitor. The pages say the source is
+  unpublished and the licence pending — update both when publication
+  actually lands.
+- **cribado-dmarc is real but young** (as of 2026-08-04: runs locally,
+  not yet deployed — "on its way"). Its page must keep saying so until a
+  deployment exists. Its honest limits stay on the page: aggregate
+  (`rua`) reports only, never forensic (`ruf`); v1 receives mail through
+  a Mailgun inbound route (built-in SMTP is deferred, with the trigger
+  written down in that repo).
 - **The server-trust deviation must stay stated in the open.** Cribado's
   operators can read every report it stores — a deliberate departure
   from the CARLOS default of server-blindness, justified in cribado-csp's
@@ -83,10 +89,11 @@ a person marker.**
   (sieve); the site states the etymology in the intro, keep it. Apps are
   lowercase and hyphenated, styled as code: `cribado-csp`,
   `cribado-dmarc`. Don't revert any of this in a drive-by edit.
-- Every technical claim on the page is traceable to the cribado-csp
-  repo's `README.md`, `CLAUDE.md`, and `DESIGN.md` (sibling checkout at
-  `../cribado-csp`). If you change a claim, check it against those — and
-  ultimately the code — rather than against the previous copy.
+- Every technical claim on the pages is traceable to the app repos'
+  `README.md`, `CLAUDE.md`, and `DESIGN.md` (sibling checkouts at
+  `../cribado-csp` and `../cribado-dmarc`). If you change a claim, check
+  it against those — and ultimately the code — rather than against the
+  previous copy.
 
 ## Deploying
 
