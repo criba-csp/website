@@ -107,6 +107,9 @@ The route was added once, by an operator on the edge box — `ship` and
 `cribado.report` apex A → `54.228.234.85` (the Tito edge — **not**
 `99.81.104.219`, which is the flagship edge; no AAAA) in DNSimple.
 
-**GitHub Pages is the fallback**, deliberately kept working: `main`
-(root) still builds with `.nojekyll` in place, so pushing to `main`
-keeps the fallback fresh. Rolling back to Pages is a DNS change only.
+**GitHub Pages is switched off** (2026-08-04; it briefly hosted the site
+2026-08-03 → 2026-08-04, and never served `cribado.report`). `.nojekyll`
+stays in the repo so re-enabling Pages remains a two-minute fallback if
+the platform is ever unavailable: enable Pages from `main` (root), add
+the custom domain in the repo settings, and point DNS at GitHub's Pages
+addresses.
