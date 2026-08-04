@@ -5,8 +5,8 @@ Working notes for anyone (human or agent) changing this repo.
 ## What this is
 
 The website for **Cribado** — a family of self-hosted report sieves:
-**cribado-csp** (CSP-violation reports; v1 in progress) and
-**cribado-dmarc** (DMARC aggregate reports; on its way — runs locally,
+**Cribado-CSP** (CSP-violation reports; v1 in progress) and
+**Cribado-DMARC** (DMARC aggregate reports; on its way — runs locally,
 not yet deployed). The site is three static pages — `index.html` (the
 family), `csp/index.html`, `dmarc/index.html` — each self-contained with
 its own inline `<style>`: no build step, no dependencies, no JavaScript,
@@ -61,7 +61,7 @@ a person marker.**
   the links would 404 for every visitor. The pages say the source is
   unpublished and the licence pending — update both when publication
   actually lands.
-- **cribado-dmarc is real but young** (as of 2026-08-04: runs locally,
+- **Cribado-DMARC is real but young** (as of 2026-08-04: runs locally,
   not yet deployed — "on its way"). Its page must keep saying so until a
   deployment exists. Its honest limits stay on the page: aggregate
   (`rua`) reports only, never forensic (`ruf`); v1 receives mail through
@@ -69,16 +69,16 @@ a person marker.**
   written down in that repo).
 - **The server-trust deviation must stay stated in the open.** Cribado's
   operators can read every report it stores — a deliberate departure
-  from the CARLOS default of server-blindness, justified in cribado-csp's
+  from the CARLOS default of server-blindness, justified in Cribado-CSP's
   `CLAUDE.md` ("The one rule"). The site must never claim or imply
   end-to-end encryption, and must never quietly drop the trade-off
   section.
-- **Don't overclaim maturity.** cribado-csp v1 is in progress: ingest and
+- **Don't overclaim maturity.** Cribado-CSP v1 is in progress: ingest and
   dashboard run, deployment is the current work. Update the Status
   section when reality changes, not before.
 - **Don't name competitors** — report-uri.com references were removed
   2026-08-04 ("used as a prompt to build this, not needed in our
-  marketing"). The cribado-csp repo's own docs still mention it; don't
+  marketing"). The Cribado-CSP repo's own docs still mention it; don't
   let it creep back in when syncing copy from there. The CSP *directive*
   `report-uri` is protocol vocabulary and stays.
 - **Never reference Tito on the site or in this repo's prose** — no name,
@@ -86,9 +86,13 @@ a person marker.**
   is as specific as the copy gets.
 - **Naming** (rebranded 2026-08-04 from the earlier "Crispa"): the family
   is **Cribado**, titleized in prose — Spanish for sieving, from *criba*
-  (sieve); the site states the etymology in the intro, keep it. Apps are
-  lowercase and hyphenated, styled as code: `cribado-csp`,
-  `cribado-dmarc`. Don't revert any of this in a drive-by edit.
+  (sieve); the site states the etymology in the intro, keep it. App
+  branding in prose is titleized with the protocol uppercased —
+  **Cribado-CSP**, **Cribado-DMARC** — matching the apps' own UI (decided
+  2026-08-04, replacing the earlier code-styled lowercase). Lowercase
+  `cribado-csp`/`cribado-dmarc` survives only where it is a real
+  identifier: repo names, checkout paths, binary and endpoint labels in
+  code samples. Don't revert any of this in a drive-by edit.
 - Every technical claim on the pages is traceable to the app repos'
   `README.md`, `CLAUDE.md`, and `DESIGN.md` (sibling checkouts at
   `../cribado-csp` and `../cribado-dmarc`). If you change a claim, check

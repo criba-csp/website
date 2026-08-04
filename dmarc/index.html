@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cribado-dmarc — the DMARC aggregate-report sieve</title>
-<meta name="description" content="🤖 cribado-dmarc is a self-hosted DMARC aggregate-report ingestion and analytics tool, on its way. Receivers mail zipped XML about who sends as your domain; cribado-dmarc sieves it into plain warnings.">
+<title>Cribado-DMARC — the DMARC aggregate-report sieve</title>
+<meta name="description" content="🤖 Cribado-DMARC is a self-hosted DMARC aggregate-report ingestion and analytics tool, on its way. Receivers mail zipped XML about who sends as your domain; Cribado-DMARC sieves it into plain warnings.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="cribado-dmarc">
+<meta property="og:title" content="Cribado-DMARC">
 <meta property="og:description" content="The DMARC aggregate-report sieve, on its way: parse the XML nobody reads, deduplicate it, and surface plain warnings — a new source sending as you, mail failing authentication, a policy safe to tighten.">
 <meta property="og:type" content="website">
 <style>
@@ -166,12 +166,12 @@
 </head>
 <body>
 
-<nav class="crumbs"><a href="../">Cribado</a> · <a href="../csp/">cribado-csp</a> · <a class="here" href="./">cribado-dmarc</a></nav>
+<nav class="crumbs"><a href="../">Cribado</a> · <a href="../csp/">Cribado-CSP</a> · <a class="here" href="./">Cribado-DMARC</a></nav>
 
 <header>
-  <h1>cribado-dmarc</h1>
+  <h1>Cribado-DMARC</h1>
   <p class="tagline">The DMARC aggregate-report sieve.</p>
-  <p class="lede">Every large mail receiver will send you XML about every message that claims to come from your domain — who sent it, from where, and whether it passed authentication. Almost nobody reads it, because it arrives as zipped XML by email. <code>cribado-dmarc</code> reads it for you and turns it into plain warnings.</p>
+  <p class="lede">Every large mail receiver will send you XML about every message that claims to come from your domain — who sent it, from where, and whether it passed authentication. Almost nobody reads it, because it arrives as zipped XML by email. Cribado-DMARC reads it for you and turns it into plain warnings.</p>
   <span class="badge">On its way — runs locally, not yet deployed</span>
   <p class="robot-note">🤖 This page was written by an LLM, on the ideas, instruction, and editing of humans. AI-written text here is always marked, visibly, like this — that's <a href="https://11factor.org/#x">factor X</a>.</p>
 </header>
@@ -179,7 +179,7 @@
 <main>
 
 <section id="intro">
-  <p>DMARC is the protocol that lets a domain say "reject mail that fails authentication" — the thing that stops phishing sent as you. But nobody turns enforcement on blind: first you watch the aggregate reports to learn who legitimately sends as your domain, then you tighten. The reports are the feedback channel, and like CSP's, it usually stays dark. <code>cribado-dmarc</code> is the listener: point your domain's DMARC record at it, and the sieve does the rest.</p>
+  <p>DMARC is the protocol that lets a domain say "reject mail that fails authentication" — the thing that stops phishing sent as you. But nobody turns enforcement on blind: first you watch the aggregate reports to learn who legitimately sends as your domain, then you tighten. The reports are the feedback channel, and like CSP's, it usually stays dark. Cribado-DMARC is the listener: point your domain's DMARC record at it, and the sieve does the rest.</p>
 
 <pre><code>_dmarc.example.com  TXT  "v=DMARC1; p=none; rua=mailto:dmarc@&lt;your-cribado-dmarc-address&gt;"</code></pre>
 
@@ -195,7 +195,7 @@
   <div class="cards">
     <div class="card">
       <h3>Reports arrive by mail</h3>
-      <p>Receivers mail their zipped XML aggregate reports to your reporting address; an inbound mail route delivers each one to <code>cribado-dmarc</code>'s signed webhook. v1 uses a Mailgun inbound route; a built-in SMTP listener is a designed-for future adapter.</p>
+      <p>Receivers mail their zipped XML aggregate reports to your reporting address; an inbound mail route delivers each one to Cribado-DMARC's signed webhook. v1 uses a Mailgun inbound route; a built-in SMTP listener is a designed-for future adapter.</p>
     </div>
     <div class="card">
       <h3>Unpack, parse, deduplicate</h3>
@@ -210,9 +210,9 @@
 
 <section id="trust">
   <h2><a href="#trust">The trade-off, stated plainly</a></h2>
-  <p class="epigraph">cribado-dmarc's operators can read every report it stores. On purpose.</p>
+  <p class="epigraph">Cribado-DMARC's operators can read every report it stores. On purpose.</p>
 
-  <p>The same deliberate deviation from <a href="https://carlosframework.com">CARLOS</a> server-blindness that <a href="../csp/"><code>cribado-csp</code></a> makes, for the same reason: the product <em>is</em> analytics over the data, and aggregate reports are operational telemetry about your own mail flows. Enumerated, justified, published, never hidden — and no end-to-end encryption claimed.</p>
+  <p>The same deliberate deviation from <a href="https://carlosframework.com">CARLOS</a> server-blindness that <a href="../csp/">Cribado-CSP</a> makes, for the same reason: the product <em>is</em> analytics over the data, and aggregate reports are operational telemetry about your own mail flows. Enumerated, justified, published, never hidden — and no end-to-end encryption claimed.</p>
 
   <ul class="plain">
     <li><strong>Aggregate (<code>rua</code>) reports only.</strong> Forensic (<code>ruf</code>) reports can contain actual message content, and are deliberately not ingested at all.</li>
@@ -225,14 +225,14 @@
   <h2><a href="#status">Status</a></h2>
   <p class="epigraph">Fewer claims, all of them checkable.</p>
 
-  <p><strong>On its way.</strong> Ingest, parsing and the dashboard run locally today; it is young software, not yet deployed. Like its sibling, <code>cribado-dmarc</code> exists to watch its makers' own domains first. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
+  <p><strong>On its way.</strong> Ingest, parsing and the dashboard run locally today; it is young software, not yet deployed. Like its sibling, Cribado-DMARC exists to watch its makers' own domains first. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
 </section>
 
 </main>
 
 <footer>
   <p>🤖 Written by an LLM (Claude), on the ideas, instruction, and editing of humans. AI-written text here is always marked and always disclosed — see <a href="https://11factor.org/#x">factor X</a>.</p>
-  <p><code>cribado-dmarc</code> is part of <a href="../">Cribado</a>, the family of self-hosted report sieves, built on <a href="https://carlosframework.com">CARLOS</a>.</p>
+  <p>Cribado-DMARC is part of <a href="../">Cribado</a>, the family of self-hosted report sieves, built on <a href="https://carlosframework.com">CARLOS</a>.</p>
   <p><a href="https://github.com/cribado/website">Source for this site on GitHub</a> — open, of course.</p>
 </footer>
 

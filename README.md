@@ -3,8 +3,8 @@
 The public website for **Cribado**, a family of self-hosted report
 sieves: small tools that store, deduplicate and watch the reports your
 systems send back. The name is *cribado* — Spanish for sieving, the work
-of a *criba*. The apps: **cribado-csp**, a CSP-violation reporting
-endpoint and analytics tool we run ourselves, and **cribado-dmarc**,
+of a *criba*. The apps: **Cribado-CSP**, a CSP-violation reporting
+endpoint and analytics tool we run ourselves, and **Cribado-DMARC**,
 its DMARC aggregate-report sibling — on its way, not yet deployed.
 
 The site is three static pages: [`index.html`](index.html) for the
@@ -25,10 +25,10 @@ human-certification markers that AI must not touch) is in
 ## Provenance
 
 Written by an LLM (Claude), on the ideas, instruction, and editing of
-humans. The claims on the page are traceable to the cribado-csp repo's
+humans. The claims on the page are traceable to the Cribado-CSP repo's
 `README.md`, `CLAUDE.md` and `DESIGN.md`.
 
 ## Licence
 
-To be decided alongside cribado-csp's own — open source is the family
+To be decided alongside Cribado-CSP's own — open source is the family
 default; not optional, only deferred.

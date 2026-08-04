@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cribado — self-hosted report sieves</title>
-<meta name="description" content="🤖 Cribado is a family of self-hosted report sieves: small tools that store, deduplicate and watch the reports your systems send back. cribado-csp sieves CSP-violation reports; cribado-dmarc, on its way, sieves DMARC aggregate reports.">
+<meta name="description" content="🤖 Cribado is a family of self-hosted report sieves: small tools that store, deduplicate and watch the reports your systems send back. Cribado-CSP sieves CSP-violation reports; Cribado-DMARC, on its way, sieves DMARC aggregate reports.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Cribado">
-<meta property="og:description" content="Self-hosted report sieves. cribado-csp stores, deduplicates and watches CSP-violation reports; cribado-dmarc does the same for DMARC aggregates.">
+<meta property="og:description" content="Self-hosted report sieves. Cribado-CSP stores, deduplicates and watches CSP-violation reports; Cribado-DMARC does the same for DMARC aggregates.">
 <meta property="og:type" content="website">
 <style>
   :root {
@@ -169,15 +169,15 @@
 </head>
 <body>
 
-<nav class="crumbs"><a class="here" href="./">Cribado</a> · <a href="csp/">cribado-csp</a> · <a href="dmarc/">cribado-dmarc</a></nav>
+<nav class="crumbs"><a class="here" href="./">Cribado</a> · <a href="csp/">Cribado-CSP</a> · <a href="dmarc/">Cribado-DMARC</a></nav>
 
 <header>
   <h1>Cribado</h1>
   <p class="tagline">Self-hosted sieves for the reports your systems send back.</p>
-  <p class="lede">A browser that blocks something reports it; a mail server that rejects something reports it. Cribado is a family of small self-hosted tools that sieve those report streams — store, deduplicate, surface what actually changed. <a href="csp/"><code>cribado-csp</code></a> watches Content-Security-Policy violations; <a href="dmarc/"><code>cribado-dmarc</code></a>, on its way, watches DMARC aggregate reports.</p>
+  <p class="lede">A browser that blocks something reports it; a mail server that rejects something reports it. Cribado is a family of small self-hosted tools that sieve those report streams — store, deduplicate, surface what actually changed. <a href="csp/">Cribado-CSP</a> watches Content-Security-Policy violations; <a href="dmarc/">Cribado-DMARC</a>, on its way, watches DMARC aggregate reports.</p>
   <div class="cta">
-    <a class="btn primary" href="csp/">cribado-csp</a>
-    <a class="btn ghost" href="dmarc/">cribado-dmarc</a>
+    <a class="btn primary" href="csp/">Cribado-CSP</a>
+    <a class="btn ghost" href="dmarc/">Cribado-DMARC</a>
   </div>
   <p class="robot-note">🤖 This page was written by an LLM, on the ideas, instruction, and editing of humans. AI-written text here is always marked, visibly, like this — that's <a href="https://11factor.org/#x">factor X</a>.</p>
 </header>
@@ -198,14 +198,14 @@
 
   <div class="cards">
     <div class="card feature">
-      <h3><a href="csp/">cribado-csp</a></h3>
+      <h3><a href="csp/">Cribado-CSP</a></h3>
       <p>The CSP-violation sieve. One endpoint accepts both browser report formats, deduplicates them into counted rows, and turns the counters into deterministic warnings — a new blocked host, a spiking directive, a real enforce-mode breakage. v1, in progress: ingest and dashboard run today.</p>
-      <p class="go"><a href="csp/">Read about cribado-csp →</a></p>
+      <p class="go"><a href="csp/">Read about Cribado-CSP →</a></p>
     </div>
     <div class="card">
-      <h3><a href="dmarc/">cribado-dmarc</a></h3>
-      <p>The DMARC aggregate-report sieve, on its way. Receivers mail zipped XML about who sends as your domain; cribado-dmarc unpacks, parses and deduplicates it into plain warnings — a new source sending as you, mail failing authentication, a policy safe to tighten. Runs locally today; not yet deployed.</p>
-      <p class="go"><a href="dmarc/">Read about cribado-dmarc →</a></p>
+      <h3><a href="dmarc/">Cribado-DMARC</a></h3>
+      <p>The DMARC aggregate-report sieve, on its way. Receivers mail zipped XML about who sends as your domain; Cribado-DMARC unpacks, parses and deduplicates it into plain warnings — a new source sending as you, mail failing authentication, a policy safe to tighten. Runs locally today; not yet deployed.</p>
+      <p class="go"><a href="dmarc/">Read about Cribado-DMARC →</a></p>
     </div>
   </div>
 </section>
