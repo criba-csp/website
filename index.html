@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crispa — self-hosted CSP-violation reporting and analytics</title>
-<meta name="description" content="🤖 Crispa is a self-hosted Content-Security-Policy violation reporting endpoint and analytics tool — a report-uri.com alternative you run yourself. One endpoint, both report formats, dedup-and-count storage, deterministic insights.">
+<title>Cribado — self-hosted report sieves</title>
+<meta name="description" content="🤖 Cribado is a family of self-hosted report sieves: small tools that store, deduplicate and watch the reports your systems send back. cribado-csp — a report-uri.com alternative you run yourself — is first; cribado-dmarc is planned.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="Crispa">
-<meta property="og:description" content="Self-hosted CSP-violation reporting and analytics. One endpoint, both report formats, dedup-and-count storage, deterministic insights — catch a broken or over-tightened policy before your users do.">
+<meta property="og:title" content="Cribado">
+<meta property="og:description" content="Self-hosted report sieves. cribado-csp stores, deduplicates and watches CSP-violation reports — catch a broken or over-tightened policy before your users do. cribado-dmarc is planned.">
 <meta property="og:type" content="website">
 <style>
   :root {
@@ -179,9 +179,9 @@
 <body>
 
 <header>
-  <h1>Crispa</h1>
-  <p class="tagline">Self-hosted CSP-violation reporting and analytics.</p>
-  <p class="lede">A page ships a Content-Security-Policy; when a browser blocks something the policy forbids, it reports the violation to Crispa. Crispa stores it, deduplicates it, and tells you what actually changed — so you catch a broken or over-tightened policy before your users do.</p>
+  <h1>Cribado</h1>
+  <p class="tagline">Self-hosted sieves for the reports your systems send back.</p>
+  <p class="lede">A browser that blocks something reports it; a mail server that rejects something reports it. Cribado is a family of small self-hosted tools that sieve those report streams — store, deduplicate, surface what actually changed. The first app, <code>cribado-csp</code>, catches a broken or over-tightened Content-Security-Policy before your users do.</p>
   <div class="cta">
     <a class="btn primary" href="#how">How it works</a>
     <a class="btn ghost" href="#trust">The trade-off</a>
@@ -199,7 +199,7 @@
 <main>
 
 <section id="intro">
-  <p>Content-Security-Policy is the browser feature that stops injected scripts, rogue frames and exfiltration by refusing to load anything the page didn't declare. It comes with a built-in feedback channel: the browser will POST a report every time it blocks something. Almost nobody listens to that channel, because the hosted services that do are metered per report and the raw stream is a firehose of noise. Crispa is the listener you run yourself — a <a href="https://report-uri.com">report-uri.com</a> alternative shipped as one small self-hosted binary. The name crosses <em>criba</em> — Spanish for a sieve — with <em>CSP</em>: a sieve for the report stream, keeping the grain and shedding the noise.</p>
+  <p>Content-Security-Policy is the browser feature that stops injected scripts, rogue frames and exfiltration by refusing to load anything the page didn't declare. It comes with a built-in feedback channel: the browser will POST a report every time it blocks something. Almost nobody listens to that channel, because the hosted services that do are metered per report and the raw stream is a firehose of noise. <code>cribado-csp</code> is the listener you run yourself — a <a href="https://report-uri.com">report-uri.com</a> alternative shipped as one small self-hosted binary. The family name is <em>cribado</em> — Spanish for sieving, the work of a <em>criba</em> — because that is the whole idea: a sieve for the report stream, keeping the grain and shedding the noise.</p>
 
   <div class="keyline">
     <p>The premise in one line: <strong>a CSP report stream is a dedup problem, not a logging problem.</strong> A policy misfiring a thousand times a minute is one fact with a big counter, not a thousand rows. Store the fact once, count it, and watch the counters for the handful of changes that mean something.</p>
@@ -213,7 +213,7 @@
   <div class="cards">
     <div class="card">
       <h3>One endpoint, both report formats</h3>
-      <p>Browsers speak two dialects: the legacy <code>report-uri</code> POST and the Reporting-API <code>report-to</code> batch. Crispa accepts both at the same URL, content-negotiated, so old and new browsers land in the same table.</p>
+      <p>Browsers speak two dialects: the legacy <code>report-uri</code> POST and the Reporting-API <code>report-to</code> batch. <code>cribado-csp</code> accepts both at the same URL, content-negotiated, so old and new browsers land in the same table.</p>
     </div>
     <div class="card">
       <h3>Dedup-and-count, not a firehose</h3>
@@ -236,46 +236,62 @@
     default-src 'self'; report-uri https://&lt;host&gt;/r/&lt;key&gt;
 
 # or, via the Reporting API:
-Reporting-Endpoints: crispa="https://&lt;host&gt;/r/&lt;key&gt;"
+Reporting-Endpoints: cribado-csp="https://&lt;host&gt;/r/&lt;key&gt;"
 Content-Security-Policy-Report-Only:
-    default-src 'self'; report-to crispa</code></pre>
+    default-src 'self'; report-to cribado-csp</code></pre>
 
   <p>Start in report-only mode to see what a policy <em>would</em> break, tighten it against real data, then enforce. Sites and keys are managed from the dashboard — create sites, mint and disable keys, copy ingest URLs — or from equivalent ops subcommands for the first key on a fresh box.</p>
 </section>
 
 <section id="trust">
   <h2><a href="#trust">The trade-off, stated plainly</a></h2>
-  <p class="epigraph">Crispa's operators can read every violation it stores. On purpose.</p>
+  <p class="epigraph">Cribado's operators can read every report it stores. On purpose.</p>
 
-  <p>Crispa is built on <a href="https://carlosframework.com">CARLOS</a>, whose family rule is server-blindness: the server holds only ciphertext it cannot open. Crispa deviates, deliberately, because the product <em>is</em> analytics over the reports — you cannot cheaply compute "top blocked hosts" over data you cannot read. A CSP report is operational telemetry about your own apps, closer to a server log than to a private message. The family rule for deviations applies instead: <strong>enumerated, justified, published, never hidden.</strong> No end-to-end encryption is claimed, here or anywhere.</p>
+  <p>Cribado is built on <a href="https://carlosframework.com">CARLOS</a>, whose family rule is server-blindness: the server holds only ciphertext it cannot open. Cribado deviates, deliberately, because the product <em>is</em> analytics over the reports — you cannot cheaply compute "top blocked hosts" over data you cannot read. A CSP report is operational telemetry about your own apps, closer to a server log than to a private message. The family rule for deviations applies instead: <strong>enumerated, justified, published, never hidden.</strong> No end-to-end encryption is claimed, here or anywhere.</p>
 
   <ul class="plain">
-    <li><strong>Storage is still minimised.</strong> URL query strings and fragments are stripped before storage — a <code>document-uri</code> can carry a user token — and inline-script samples are never shown in list or aggregate views. Browsers don't put cookies or auth headers in reports, so Crispa never sees them.</li>
+    <li><strong>Storage is still minimised.</strong> URL query strings and fragments are stripped before storage — a <code>document-uri</code> can carry a user token — and inline-script samples are never shown in list or aggregate views. Browsers don't put cookies or auth headers in reports, so <code>cribado-csp</code> never sees them.</li>
     <li><strong>The ingest endpoint is public and unauthenticated</strong>, by necessity: browsers can't sign a report POST. It is hostile by construction — rate-limited, size-capped, scoped by an opaque per-site key, with unknown keys rejected cheaply.</li>
     <li><strong>The dashboard is gated.</strong> Sign-in is Keymail OAuth SSO, restricted to an operator allowlist; only operators can read violation data. A deployed build fails closed if SSO isn't configured, so an open dashboard cannot ship by accident.</li>
   </ul>
+</section>
+
+<section id="apps">
+  <h2><a href="#apps">One idea, several streams</a></h2>
+  <p class="epigraph">Every reporting protocol deserves the same sieve.</p>
+
+  <div class="cards">
+    <div class="card feature">
+      <h3>cribado-csp</h3>
+      <p>The CSP-violation sieve — the app this page describes. v1, in progress: the ingest endpoint and the analytics dashboard run today; deployment is the current work.</p>
+    </div>
+    <div class="card">
+      <h3>cribado-dmarc</h3>
+      <p>The same treatment for DMARC aggregate reports — the XML your mail domain receives about who is sending as you. <strong>Not yet built.</strong> It is named here so the shape of the family is honest, not to imply it exists.</p>
+    </div>
+  </div>
 </section>
 
 <section id="status">
   <h2><a href="#status">Status</a></h2>
   <p class="epigraph">Fewer claims, all of them checkable.</p>
 
-  <p><strong>v1, in progress.</strong> The ingest endpoint and the analytics dashboard run today; deployment to production is the current work. Crispa exists to watch its makers' own apps first — it becomes interesting to anyone else only after it has earned its keep there. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
+  <p><strong>v1, in progress.</strong> <code>cribado-csp</code>'s ingest endpoint and analytics dashboard run today; deployment to production is the current work. Cribado exists to watch its makers' own apps first — it becomes interesting to anyone else only after it has earned its keep there. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
 </section>
 
 <section id="family">
   <h2><a href="#family">Part of a family</a></h2>
   <p class="epigraph">One binary, one SQLite database, no build step.</p>
 
-  <p>Crispa is a <a href="https://carlosframework.com">CARLOS</a> application, built with the <a href="https://carlosframework.com/rastrillo/">Rastrillo</a> web framework: a single static Go binary with the database compiled in, deployed as one instance, small enough for one person to read. This site follows the same rule — one static page, no build step, no dependencies, no JavaScript.</p>
+  <p>Cribado apps are <a href="https://carlosframework.com">CARLOS</a> applications, built with the <a href="https://carlosframework.com/rastrillo/">Rastrillo</a> web framework: each a single static Go binary with the database compiled in, deployed as one instance, small enough for one person to read. This site follows the same rule — one static page, no build step, no dependencies, no JavaScript.</p>
 </section>
 
 </main>
 
 <footer>
   <p>🤖 Written by an LLM (Claude), on the ideas, instruction, and editing of humans. AI-written text here is always marked and always disclosed — see <a href="https://11factor.org/#x">factor X</a>.</p>
-  <p>Crispa is built on <a href="https://carlosframework.com">CARLOS</a>, and keeps the promises set out in <a href="https://11factor.org">The Eleven Factors</a> — with its one deviation stated in the open, above.</p>
-  <p><a href="https://github.com/criba-csp/website">Source for this site on GitHub</a> — open, of course.</p>
+  <p>Cribado is built on <a href="https://carlosframework.com">CARLOS</a>, and keeps the promises set out in <a href="https://11factor.org">The Eleven Factors</a> — with its one deviation stated in the open, above.</p>
+  <p><a href="https://github.com/cribado/website">Source for this site on GitHub</a> — open, of course.</p>
 </footer>
 
 </body>

@@ -4,12 +4,14 @@ Working notes for anyone (human or agent) changing this repo.
 
 ## What this is
 
-The website for **Crispa** — a self-hosted CSP-violation reporting
-endpoint and analytics tool, a [report-uri.com](https://report-uri.com)
-alternative run in-house. The site is a single static `index.html`: no
-build step, no dependencies, no JavaScript. Keep it that way; a product
-whose family motto is "lightweight, no build step" does not get to ship a
-bundler on its own homepage.
+The website for **Cribado** — a family of self-hosted report sieves.
+Today that means **cribado-csp**, a CSP-violation reporting endpoint and
+analytics tool (a [report-uri.com](https://report-uri.com) alternative
+run in-house); **cribado-dmarc** (DMARC aggregate reports) is planned and
+not yet built. The site is a single static `index.html`: no build step,
+no dependencies, no JavaScript. Keep it that way; a product whose family
+motto is "lightweight, no build step" does not get to ship a bundler on
+its own homepage.
 
 ## The one rule: AI authorship is always marked (🤖 / 👨)
 
@@ -45,37 +47,41 @@ a person marker.**
 - **House style is inherited from [11factor](https://11factor.org)** via
   the [CARLOS site](https://carlosframework.com): Charter/Georgia serif, a
   single accent colour, `--max: 42rem` measure, sections separated by
-  hairline rules, an italic epigraph under each `h2`. Crispa's accent is
+  hairline rules, an italic epigraph under each `h2`. Cribado's accent is
   **amber** (`#a1580a` light, `#e3a457` dark) — a warning colour for a
   warnings tool — so the family sites are visibly siblings and not the
   same site.
 
 ## Accuracy rules (these matter more than the prose)
 
-- **The Crispa source repo is not yet published.** Never link to it from
-  the site; the link would 404 for every visitor. The page says the source
-  is unpublished and the licence pending — update both when publication
-  actually lands.
-- **The server-trust deviation must stay stated in the open.** Crispa's
-  operators can read every violation it stores — a deliberate departure
-  from the CARLOS default of server-blindness, justified in Crispa's
+- **The cribado-csp source repo is private** (`cribado/cribado-csp` on
+  GitHub). Never link to it from the site; the link would 404 for every
+  visitor. The page says the source is unpublished and the licence
+  pending — update both when publication actually lands.
+- **cribado-dmarc does not exist yet** (as of 2026-08-04). The site names
+  it to show the family's shape, and says "not yet built" in the same
+  breath. Never add claims about it beyond intent until there is code to
+  trace them to.
+- **The server-trust deviation must stay stated in the open.** Cribado's
+  operators can read every report it stores — a deliberate departure
+  from the CARLOS default of server-blindness, justified in cribado-csp's
   `CLAUDE.md` ("The one rule"). The site must never claim or imply
   end-to-end encryption, and must never quietly drop the trade-off
   section.
-- **Don't overclaim maturity.** v1 is in progress: ingest and dashboard
-  run, deployment is the current work. Update the Status section when
-  reality changes, not before.
+- **Don't overclaim maturity.** cribado-csp v1 is in progress: ingest and
+  dashboard run, deployment is the current work. Update the Status
+  section when reality changes, not before.
 - **Never reference Tito on the site or in this repo's prose** — no name,
-  no link (decided 2026-08-03). Crispa stands on its own; "its makers"
+  no link (decided 2026-08-03). Cribado stands on its own; "its makers"
   is as specific as the copy gets.
-- **The name is Crispa, titleized** (changed 2026-08-03 from the earlier
-  all-lowercase styling — don't revert it in a drive-by edit). Its
-  etymology is **criba** (Spanish: sieve) crossed with **CSP** — hence the
-  GitHub org `criba-csp` — and the site states it in the intro; keep the
-  reference when reworking that copy.
-- Every technical claim on the page is traceable to the Crispa repo's
-  `README.md`, `CLAUDE.md`, and `DESIGN.md` (sibling checkout at
-  `../crispa`). If you change a claim, check it against those — and
+- **Naming** (rebranded 2026-08-04 from the earlier "Crispa"): the family
+  is **Cribado**, titleized in prose — Spanish for sieving, from *criba*
+  (sieve); the site states the etymology in the intro, keep it. Apps are
+  lowercase and hyphenated, styled as code: `cribado-csp`,
+  `cribado-dmarc`. Don't revert any of this in a drive-by edit.
+- Every technical claim on the page is traceable to the cribado-csp
+  repo's `README.md`, `CLAUDE.md`, and `DESIGN.md` (sibling checkout at
+  `../cribado-csp`). If you change a claim, check it against those — and
   ultimately the code — rather than against the previous copy.
 
 ## Deploying
