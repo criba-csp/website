@@ -3,9 +3,9 @@
 The public website for **Cribado**, a family of self-hosted report
 sieves: small tools that store, deduplicate and watch the reports your
 systems send back. The name is *cribado* — Spanish for sieving, the work
-of a *criba*. First app: **cribado-csp**, a
-[report-uri.com](https://report-uri.com) alternative we run ourselves;
-**cribado-dmarc** is planned, not yet built.
+of a *criba*. First app: **cribado-csp**, a CSP-violation reporting
+endpoint and analytics tool we run ourselves; **cribado-dmarc** is
+planned, not yet built.
 
 The whole site is one static page: [`index.html`](index.html). No build
 step, no dependencies, no JavaScript. Cribado apps are

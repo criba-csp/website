@@ -6,9 +6,8 @@ Working notes for anyone (human or agent) changing this repo.
 
 The website for **Cribado** — a family of self-hosted report sieves.
 Today that means **cribado-csp**, a CSP-violation reporting endpoint and
-analytics tool (a [report-uri.com](https://report-uri.com) alternative
-run in-house); **cribado-dmarc** (DMARC aggregate reports) is planned and
-not yet built. The site is a single static `index.html`: no build step,
+analytics tool run in-house; **cribado-dmarc** (DMARC aggregate reports)
+is planned and not yet built. The site is a single static `index.html`: no build step,
 no dependencies, no JavaScript. Keep it that way; a product whose family
 motto is "lightweight, no build step" does not get to ship a bundler on
 its own homepage.
@@ -71,6 +70,11 @@ a person marker.**
 - **Don't overclaim maturity.** cribado-csp v1 is in progress: ingest and
   dashboard run, deployment is the current work. Update the Status
   section when reality changes, not before.
+- **Don't name competitors** — report-uri.com references were removed
+  2026-08-04 ("used as a prompt to build this, not needed in our
+  marketing"). The cribado-csp repo's own docs still mention it; don't
+  let it creep back in when syncing copy from there. The CSP *directive*
+  `report-uri` is protocol vocabulary and stays.
 - **Never reference Tito on the site or in this repo's prose** — no name,
   no link (decided 2026-08-03). Cribado stands on its own; "its makers"
   is as specific as the copy gets.

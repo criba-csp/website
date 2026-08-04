@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cribado — self-hosted report sieves</title>
-<meta name="description" content="🤖 Cribado is a family of self-hosted report sieves: small tools that store, deduplicate and watch the reports your systems send back. cribado-csp — a report-uri.com alternative you run yourself — is first; cribado-dmarc is planned.">
+<meta name="description" content="🤖 Cribado is a family of self-hosted report sieves: small tools that store, deduplicate and watch the reports your systems send back. cribado-csp, the CSP-violation sieve you run yourself, is first; cribado-dmarc is planned.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Cribado">
 <meta property="og:description" content="Self-hosted report sieves. cribado-csp stores, deduplicates and watches CSP-violation reports — catch a broken or over-tightened policy before your users do. cribado-dmarc is planned.">
@@ -199,7 +199,7 @@
 <main>
 
 <section id="intro">
-  <p>Content-Security-Policy is the browser feature that stops injected scripts, rogue frames and exfiltration by refusing to load anything the page didn't declare. It comes with a built-in feedback channel: the browser will POST a report every time it blocks something. Almost nobody listens to that channel, because the hosted services that do are metered per report and the raw stream is a firehose of noise. <code>cribado-csp</code> is the listener you run yourself — a <a href="https://report-uri.com">report-uri.com</a> alternative shipped as one small self-hosted binary. The family name is <em>cribado</em> — Spanish for sieving, the work of a <em>criba</em> — because that is the whole idea: a sieve for the report stream, keeping the grain and shedding the noise.</p>
+  <p>Content-Security-Policy is the browser feature that stops injected scripts, rogue frames and exfiltration by refusing to load anything the page didn't declare. It comes with a built-in feedback channel: the browser will POST a report every time it blocks something. Almost nobody listens to that channel, because the hosted services that do are metered per report and the raw stream is a firehose of noise. <code>cribado-csp</code> is the listener you run yourself, shipped as one small self-hosted binary. The family name is <em>cribado</em> — Spanish for sieving, the work of a <em>criba</em> — because that is the whole idea: a sieve for the report stream, keeping the grain and shedding the noise.</p>
 
   <div class="keyline">
     <p>The premise in one line: <strong>a CSP report stream is a dedup problem, not a logging problem.</strong> A policy misfiring a thousand times a minute is one fact with a big counter, not a thousand rows. Store the fact once, count it, and watch the counters for the handful of changes that mean something.</p>
