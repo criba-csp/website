@@ -86,8 +86,27 @@ a person marker.**
 
 ## Deploying
 
-**GitHub Pages, for now** — enabled 2026-08-03, serving `main` (root);
-pushing to `main` publishes, and `.nojekyll` is in place. The likely
-eventual path is the same as the CARLOS site's: ship as a `-kind static`
-app on `carlosframework/platform` (`carlos ship` / `promote` / `add`),
-with Pages kept as the fallback.
+**The live site, [cribado.report](https://cribado.report), runs on the
+CARLOS platform** (the Tito deployment, console `carlos.tito.io`) as a
+`-kind static` app — cut over 2026-08-04. Publishing a change is the
+standard sequence, run from this repo with a clean tree:
+
+```
+carlos ship    -account bad -app cribado -kind static -version <sha> .
+carlos promote -account bad -app cribado <sha> canary/rehearsal
+```
+
+The `cribado.report` route follows `canary/rehearsal` (same reasoning as
+the CARLOS site's own cutover: `stable` bakes 72h on a box's first
+sighting of a channel head, which would have meant 72h of downtime for a
+never-before-served route; a later `stable` flip is optional cleanup).
+The route was added once, by an operator on the edge box — `ship` and
+`promote` speak the console API, but route management is box-side
+(`sudo -u carlos /opt/carlos/carlos add …` over SSM; see
+`../cribado-csp/docs/2026-08-03-deploy-design.md` for box access). DNS:
+`cribado.report` apex A → `54.228.234.85` (the Tito edge — **not**
+`99.81.104.219`, which is the flagship edge; no AAAA) in DNSimple.
+
+**GitHub Pages is the fallback**, deliberately kept working: `main`
+(root) still builds with `.nojekyll` in place, so pushing to `main`
+keeps the fallback fresh. Rolling back to Pages is a DNS change only.
