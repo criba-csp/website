@@ -88,6 +88,10 @@
     font-size: 2.9rem; line-height: 1; letter-spacing: 0.01em;
     margin: 0 0 0.85rem; font-weight: 700;
   }
+  h1 .mark {
+    width: 2.4rem; height: 2.4rem; border-radius: 0.45rem;
+    vertical-align: -0.28rem; margin-right: 0.55rem;
+  }
   .tagline { font-size: 1.2rem; color: var(--muted); font-style: italic; }
   .lede {
     font-size: 1.2rem; max-width: 38rem;
@@ -176,7 +180,7 @@
 <nav class="crumbs"><a href="../">Cribado</a> · <a class="here" href="./">Cribado-CSP</a> · <a href="../dmarc/">Cribado-DMARC</a></nav>
 
 <header>
-  <h1>Cribado-CSP</h1>
+  <h1><img class="mark" src="favicon.svg" alt="" width="42" height="42">Cribado-CSP</h1>
   <p class="tagline">The CSP-violation sieve.</p>
   <p class="lede">A page ships a Content-Security-Policy; when a browser blocks something the policy forbids, it reports the violation to Cribado-CSP. It stores it, deduplicates it, and tells you what actually changed — so you catch a broken or over-tightened policy before your users do.</p>
   <p class="robot-note">🤖 This page was written by an LLM, on the ideas, instruction, and editing of humans. AI-written text here is always marked, visibly, like this — that's <a href="https://11factor.org/#x">factor X</a>.</p>

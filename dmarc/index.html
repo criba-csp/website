@@ -88,6 +88,10 @@
     font-size: 2.9rem; line-height: 1; letter-spacing: 0.01em;
     margin: 0 0 0.85rem; font-weight: 700;
   }
+  h1 .mark {
+    width: 2.4rem; height: 2.4rem; border-radius: 0.45rem;
+    vertical-align: -0.28rem; margin-right: 0.55rem;
+  }
   .tagline { font-size: 1.2rem; color: var(--muted); font-style: italic; }
   .lede {
     font-size: 1.2rem; max-width: 38rem;
@@ -169,7 +173,7 @@
 <nav class="crumbs"><a href="../">Cribado</a> · <a href="../csp/">Cribado-CSP</a> · <a class="here" href="./">Cribado-DMARC</a></nav>
 
 <header>
-  <h1>Cribado-DMARC</h1>
+  <h1><img class="mark" src="favicon.svg" alt="" width="42" height="42">Cribado-DMARC</h1>
   <p class="tagline">The DMARC aggregate-report sieve.</p>
   <p class="lede">Every large mail receiver will send you XML about every message that claims to come from your domain — who sent it, from where, and whether it passed authentication. Almost nobody reads it, because it arrives as zipped XML by email. Cribado-DMARC reads it for you and turns it into plain warnings.</p>
   <span class="badge">On its way — runs locally, not yet deployed</span>

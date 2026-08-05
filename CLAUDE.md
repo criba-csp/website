@@ -53,13 +53,17 @@ a person marker.**
   **amber** (`#a1580a` light, `#e3a457` dark) — a warning colour for a
   warnings tool — so the family sites are visibly siblings and not the
   same site.
-- **The marks** (2026-08-04): three white dots over three dashes over one
-  dot, on a rounded square. Dot rhythm and field colour identify the app:
-  Cribado level on brown `#a1580a` (`favicon.svg`), Cribado-CSP
-  high-low-high on gold `#b39205` (`csp/favicon.svg`), Cribado-DMARC
-  low-high-low on red `#a0410f` (`dmarc/favicon.svg`). **This repo is the
-  source of truth**; the app repos carry copies at
+- **The marks** (redrawn by hand 2026-08-04 — human-authored SVGs, edit
+  with care): a white heap above three dashes above one dot, on a rounded
+  square — the pile going through the sieve, the grain below. Heap shape
+  and field colour identify the app: Cribado a level mound on brown
+  `#a1580a` (`favicon.svg`), Cribado-CSP a right-leaning wedge on gold
+  `#af932f` (`csp/favicon.svg`), Cribado-DMARC a left-leaning wedge on
+  red `#953321` (`dmarc/favicon.svg`). **This repo is the source of
+  truth**; the app repos carry copies at
   `internal/web/static/favicon.svg` — change here first, then re-copy.
+  The marks also appear in the page chrome: each app page's `h1` and the
+  homepage's two CTA buttons embed the favicons as `<img>`.
 
 ## Accuracy rules (these matter more than the prose)
 
