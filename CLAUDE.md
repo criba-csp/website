@@ -63,7 +63,10 @@ a person marker.**
   truth**; the app repos carry copies at
   `internal/web/static/favicon.svg` — change here first, then re-copy.
   The marks also appear in the page chrome: each app page's `h1` and the
-  homepage's two CTA buttons embed the favicons as `<img>`.
+  homepage's two CTA buttons embed the app SVGs as `<img>`. The browser
+  tab icon (`<link rel="icon">`) is the **family mark on every page**
+  (decided 2026-08-05) — the app marks identify apps within a page, not
+  tabs.
 
 ## Accuracy rules (these matter more than the prose)
 
