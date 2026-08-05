@@ -2,8 +2,8 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;">
     <g id="CSP" transform="matrix(1,0,0,1,0,-1)">
-        <g transform="matrix(1,0,0,1.015625,0,0)">
-            <path d="M64,11.815L64,52.185C64,58.706 58.623,64 52,64L12,64C5.377,64 0,58.706 0,52.185L0,11.815C0,5.294 5.377,0 12,0L52,0C58.623,0 64,5.294 64,11.815Z" style="fill:rgb(175,147,47);"/>
+        <g transform="matrix(0.842105,0,0,0.876712,4.210526,5.383562)">
+            <path d="M71,-5L71,31.5C71,51.658 53.987,68 33,68L33,68C12.013,68 -5,51.658 -5,31.5C-5,13.25 -5,-5 -5,-5L71,-5Z" style="fill:rgb(175,147,47);"/>
         </g>
         <g transform="matrix(0.92,0,0,1,4.4,-0.5)">
             <path d="M5,10L55,25L5,25L5,10Z" style="fill:white;"/>
@@ -11,8 +11,5 @@
     </g>
     <g transform="matrix(1,0,0,1,0,2)">
         <path d="M12,33L20,33M28,33L36,33M44,33L52,33" style="fill-rule:nonzero;stroke:white;stroke-width:5px;"/>
-    </g>
-    <g transform="matrix(0.833333,0,0,0.833333,5.333333,10)">
-        <circle cx="32" cy="48" r="6" style="fill:white;"/>
     </g>
 </svg>
