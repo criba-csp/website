@@ -176,7 +176,7 @@
   <h1><img class="mark" src="favicon.svg" alt="" width="42" height="42">Cribado-DMARC</h1>
   <p class="tagline">The DMARC aggregate-report sieve.</p>
   <p class="lede">Every large mail receiver will send you XML about every message that claims to come from your domain — who sent it, from where, and whether it passed authentication. Almost nobody reads it, because it arrives as zipped XML by email. Cribado-DMARC reads it for you and turns it into plain warnings.</p>
-  <span class="badge">On its way — runs locally, not yet deployed</span>
+  <span class="badge">On its way — deployed; the production mail path is the current work</span>
   <p class="robot-note">🤖 This page was written by an LLM, on the ideas, instruction, and editing of humans. AI-written text here is always marked, visibly, like this — that's <a href="https://11factor.org/#x">factor X</a>.</p>
 </header>
 
@@ -198,8 +198,8 @@
 
   <div class="cards">
     <div class="card">
-      <h3>Reports arrive by mail</h3>
-      <p>Receivers mail their zipped XML aggregate reports to your reporting address; an inbound mail route delivers each one to Cribado-DMARC's signed webhook. v1 uses a Mailgun inbound route; a built-in SMTP listener is a designed-for future adapter.</p>
+      <h3>Reports arrive by mail — straight to the binary</h3>
+      <p>DMARC reporting is mailto-only in practice, so email is unavoidable; the only question is who speaks SMTP, and the answer is Cribado-DMARC itself. A small inbound-only listener lives in the binary, and your domain's MX points straight at it — no relay, no third-party mail service in the path.</p>
     </div>
     <div class="card">
       <h3>Unpack, parse, deduplicate</h3>
@@ -221,7 +221,7 @@
   <ul class="plain">
     <li><strong>Aggregate (<code>rua</code>) reports only.</strong> Forensic (<code>ruf</code>) reports can contain actual message content, and are deliberately not ingested at all.</li>
     <li><strong>The dashboard is gated.</strong> Sign-in is Keymail OAuth SSO; a deployed build fails closed if SSO isn't configured.</li>
-    <li><strong>Self-hosting v1 needs a mail relay.</strong> Reports arrive through a Mailgun (or compatible) inbound route today — an honest dependency, stated rather than hidden, with the built-in SMTP listener on the defer list with its trigger written down.</li>
+    <li><strong>The listener is inbound-only by construction.</strong> It never relays, never sends, never bounces, and every dimension is bounded. Report senders are the world's best-behaved MTAs and retry on any transient failure, so there is no queue to manage. STARTTLS is advertised once the operator supplies a certificate.</li>
   </ul>
 </section>
 
@@ -229,7 +229,7 @@
   <h2><a href="#status">Status</a></h2>
   <p class="epigraph">Fewer claims, all of them checkable.</p>
 
-  <p><strong>On its way.</strong> Ingest, parsing and the dashboard run locally today; it is young software, not yet deployed. Like its sibling, Cribado-DMARC exists to watch its makers' own domains first. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
+  <p><strong>On its way.</strong> The binary — SMTP ingest, parsing, warnings, and the dashboard — is built, and the app is deployed with its dashboard live; wiring up the production mail path (the MX record, the port the listener answers on, the STARTTLS certificate) is the current work, so no reports flow yet. Like its sibling, Cribado-DMARC exists to watch its makers' own domains first. The source is not yet published; the licence is being decided before first publication, and open source is the family default — not optional, only deferred. When that changes, this page will link to it.</p>
 </section>
 
 </main>

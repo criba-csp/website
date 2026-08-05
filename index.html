@@ -209,7 +209,7 @@
     </div>
     <div class="card">
       <h3><a href="dmarc/">Cribado-DMARC</a></h3>
-      <p>The DMARC aggregate-report sieve, on its way. Receivers mail zipped XML about who sends as your domain; Cribado-DMARC unpacks, parses and deduplicates it into plain warnings — a new source sending as you, mail failing authentication, a policy safe to tighten. Runs locally today; not yet deployed.</p>
+      <p>The DMARC aggregate-report sieve, on its way. Receivers mail zipped XML about who sends as your domain, straight to the binary's own inbound SMTP listener; Cribado-DMARC unpacks, parses and deduplicates it into plain warnings — a new source sending as you, mail failing authentication, a policy safe to tighten. Deployed; the production mail path is the current work.</p>
       <p class="go"><a href="dmarc/">Read about Cribado-DMARC →</a></p>
     </div>
   </div>

@@ -5,7 +5,8 @@ sieves: small tools that store, deduplicate and watch the reports your
 systems send back. The name is *cribado* — Spanish for sieving, the work
 of a *criba*. The apps: **Cribado-CSP**, a CSP-violation reporting
 endpoint and analytics tool we run ourselves, and **Cribado-DMARC**,
-its DMARC aggregate-report sibling — on its way, not yet deployed.
+its DMARC aggregate-report sibling — on its way: deployed, with the
+production mail path the current work.
 
 The site is three static pages: [`index.html`](index.html) for the
 family, [`csp/`](csp/index.html) and [`dmarc/`](dmarc/index.html) for

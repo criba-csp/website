@@ -6,8 +6,8 @@ Working notes for anyone (human or agent) changing this repo.
 
 The website for **Cribado** — a family of self-hosted report sieves:
 **Cribado-CSP** (CSP-violation reports; v1 in progress) and
-**Cribado-DMARC** (DMARC aggregate reports; on its way — runs locally,
-not yet deployed). The site is three static pages — `index.html` (the
+**Cribado-DMARC** (DMARC aggregate reports; on its way — deployed, mail
+path being wired). The site is three static pages — `index.html` (the
 family), `csp/index.html`, `dmarc/index.html` — each self-contained with
 its own inline `<style>`: no build step, no dependencies, no JavaScript,
 no shared CSS file. Keep it that way; a product whose family motto is
@@ -72,12 +72,15 @@ a person marker.**
   the links would 404 for every visitor. The pages say the source is
   unpublished and the licence pending — update both when publication
   actually lands.
-- **Cribado-DMARC is real but young** (as of 2026-08-04: runs locally,
-  not yet deployed — "on its way"). Its page must keep saying so until a
-  deployment exists. Its honest limits stay on the page: aggregate
-  (`rua`) reports only, never forensic (`ruf`); v1 receives mail through
-  a Mailgun inbound route (built-in SMTP is deferred, with the trigger
-  written down in that repo).
+- **Cribado-DMARC is real but young** (as of 2026-08-05: deployed, its
+  dashboard live, but the production mail path — MX record, port-25
+  exposure, STARTTLS cert — is still being wired, so no reports flow
+  yet). Its page must keep saying "on its way" until reports flow. Its
+  honest limits stay on the page: aggregate (`rua`) reports only, never
+  forensic (`ruf`); ingest is the binary's **own inbound-only SMTP
+  listener** — the earlier Mailgun-relay copy was revised 2026-08-04
+  (that repo's settled decision 1, revised same-day: "no relay"); don't
+  reintroduce Mailgun when syncing from stale docs.
 - **The server-trust deviation must stay stated in the open.** Cribado's
   operators can read every report it stores — a deliberate departure
   from the CARLOS default of server-blindness, justified in Cribado-CSP's
