@@ -79,6 +79,10 @@
     font-size: 3.4rem; line-height: 1; letter-spacing: 0.02em;
     margin: 0 0 0.85rem; font-weight: 700;
   }
+  h1 .mark {
+    width: 2.8rem; height: 2.8rem; border-radius: 0.5rem;
+    vertical-align: -0.3rem; margin-right: 0.55rem;
+  }
   .tagline { font-size: 1.2rem; color: var(--muted); font-style: italic; }
   .lede {
     font-size: 1.2rem; max-width: 38rem;
@@ -95,9 +99,8 @@
     display: inline-flex; align-items: center; gap: 0.5rem;
   }
   .btn img { width: 1.2rem; height: 1.2rem; border-radius: 0.3rem; }
-  .btn.primary { background: var(--accent); color: var(--bg); }
-  .btn.ghost { color: var(--accent); border: 1px solid var(--rule); }
-  .btn.ghost:hover, .btn.primary:hover { filter: brightness(1.1); }
+  .btn { background: #ffffff; color: #a1580a; border: 1px solid var(--rule); }
+  .btn:hover { filter: brightness(0.97); }
   .robot-note {
     margin: 2.25rem auto 0; padding: 0.6rem 0.9rem; max-width: 36rem;
     background: var(--accent-soft); border-radius: 0.5rem;
@@ -174,12 +177,12 @@
 <nav class="crumbs"><a class="here" href="./">Cribado</a> · <a href="csp/">Cribado-CSP</a> · <a href="dmarc/">Cribado-DMARC</a></nav>
 
 <header>
-  <h1>Cribado</h1>
+  <h1><img class="mark" src="favicon.svg" alt="" width="45" height="45">Cribado</h1>
   <p class="tagline">Self-hosted sieves for the reports your systems send back.</p>
   <p class="lede">A browser that blocks something reports it; a mail server that rejects something reports it. Cribado is a family of small self-hosted tools that sieve those report streams — store, deduplicate, surface what actually changed. <a href="csp/">Cribado-CSP</a> watches Content-Security-Policy violations; <a href="dmarc/">Cribado-DMARC</a>, on its way, watches DMARC aggregate reports.</p>
   <div class="cta">
-    <a class="btn primary" href="csp/"><img src="csp/favicon.svg" alt="" width="20" height="20">Cribado-CSP</a>
-    <a class="btn ghost" href="dmarc/"><img src="dmarc/favicon.svg" alt="" width="20" height="20">Cribado-DMARC</a>
+    <a class="btn" href="csp/"><img src="csp/favicon.svg" alt="" width="20" height="20">Cribado-CSP</a>
+    <a class="btn" href="dmarc/"><img src="dmarc/favicon.svg" alt="" width="20" height="20">Cribado-DMARC</a>
   </div>
   <p class="robot-note">🤖 This page was written by an LLM, on the ideas, instruction, and editing of humans. AI-written text here is always marked, visibly, like this — that's <a href="https://11factor.org/#x">factor X</a>.</p>
 </header>
